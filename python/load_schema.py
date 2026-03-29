@@ -1,7 +1,7 @@
 """
 load_schema.py
 ─────────────────────────────────────────────────────────────────────────────
-Marketing Analytics Pipeline — Task 3: Schema Loader
+Marketing Analytics Pipeline — Star Schema Loader
 ─────────────────────────────────────────────────────────────────────────────
 Creates (or recreates) the star schema database at:
     data/final/analytics_warehouse.db

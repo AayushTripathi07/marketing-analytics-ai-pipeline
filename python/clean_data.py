@@ -1,7 +1,7 @@
 """
 clean_data.py
 ─────────────────────────────────────────────────────────────────────────────
-Marketing Analytics Pipeline — Task 2: Data Cleaning & Validation
+Marketing Analytics Pipeline — Data Cleaning & Validation
 ─────────────────────────────────────────────────────────────────────────────
 Outputs
   • data/final/cleaned_campaigns.db  → table: campaigns_clean

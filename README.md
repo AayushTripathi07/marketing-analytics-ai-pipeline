@@ -57,14 +57,14 @@ marketing-analytics-ai-pipeline/
 │   │   ├── Campaign_Raw.csv            # Ad platform export (Facebook/Meta)
 │   │   └── Raw_Shopify_Sales.csv       # Shopify orders export
 │   └── final/
-│       ├── cleaned_campaigns.db        # Task 2 output: cleaned campaign data
-│       ├── cleaned_shopify.db          # Task 2 output: cleaned Shopify data
-│       └── analytics_warehouse.db     # Task 3 output: star schema warehouse
+│       ├── cleaned_campaigns.db        # Core campaign data (cleaned)
+│       ├── cleaned_shopify.db          # Shopify sales data (cleaned)
+│       └── analytics_warehouse.db     # Unified star schema warehouse
 │
 ├── python/
-│   ├── clean_data.py                   # Task 2: cleaning, validation, metric flagging
-│   ├── load_schema.py                  # Task 3: attaches sources, runs schema.sql
-│   └── data_quality_report.md         # Auto-generated — every issue found & fixed
+│   ├── clean_data.py                   # Data cleaning, validation, and enrichment
+│   ├── load_schema.py                  # Warehouse ingestion and star schema build
+│   └── data_quality_report.md         # Automated quality audit report
 │
 ├── sql/
 │   └── schema.sql                      # Full star schema DDL + views + indexes
@@ -111,7 +111,7 @@ Create a `.env` file in the project root:
 GEMINI_API_KEY=your_key_here
 ```
 
-### 3. Run the data cleaning pipeline (Task 2)
+### 3. Run the data cleaning pipeline
 
 ```bash
 cd python
@@ -134,7 +134,7 @@ What the cleaner does:
 | Metrics | CTR, CPC, CPM, ROAS, ROI recalculated from source; `metric_recalc_flag=1` on 3,350 rows where inputs were corrected |
 | Anomaly flags | Z-score > 2.0 → `is_unusual_spend`, `is_unusual_cpc` |
 
-### 4. Build the SQL star schema warehouse (Task 3)
+### 4. Build the SQL star schema warehouse
 
 ```bash
 python load_schema.py
@@ -158,7 +158,7 @@ The warehouse contains:
 | `vw_ai_flexible_performance` | View | — |
 | `vw_ai_kpi_summary` | View | — |
 
-### 5. Launch the AI Insight Tool (Task 5)
+### 5. Launch the AI Insight Tool
 
 ```bash
 cd ..
@@ -169,7 +169,7 @@ Open `http://localhost:8501` in your browser.
 
 ---
 
-## 📊 Power BI Dashboard (Task 4)
+## 📊 Power BI Dashboard
 
 Connects directly to `data/final/analytics_warehouse.db` — no CSV files.
 
@@ -188,7 +188,7 @@ See `powerbi/DAX_and_Modeling_Guide.md` for the complete build guide including a
 
 ---
 
-## 🤖 AI Insight Tool (Task 5)
+## 🤖 AI Insight Tool
 
 Powered by **Google Gemini** + **Streamlit**. Both tabs query `analytics_warehouse.db` exclusively — no CSV access.
 
