@@ -3,6 +3,10 @@ import sqlite3
 import pandas as pd
 import os
 import re
+from dotenv import load_dotenv
+
+load_dotenv()  # Load variables from .env file
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 
 st.set_page_config(page_title="Marketing Analytics AI Pipeline", layout="wide")
 
@@ -134,8 +138,8 @@ with tab1:
         if not user_question:
             st.warning("⚠️ Please ask a question.")
         else:
-            # Backend API Key (Hidden from UI)
-            api_key = "***REMOVED***"
+            # Backend API Key (loaded from .env)
+            api_key = GEMINI_API_KEY
             provider = "Google Gemini"
             
             with st.spinner("Thinking..."):
@@ -173,7 +177,7 @@ with tab2:
     budget_input = st.number_input("Total Monthly Budget to Allocate (INR)", min_value=1000, max_value=10000000, value=500000, step=10000)
     
     if st.button("Calculate Optimal Allocation", type="primary"):
-        api_key = "***REMOVED***"
+        api_key = GEMINI_API_KEY
         with st.spinner("Analyzing Historical ROAS..."):
             # Aggregate historical performance from DB
             roas_query = """
