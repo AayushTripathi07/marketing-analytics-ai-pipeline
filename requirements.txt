@@ -1,0 +1,6 @@
+pandas==2.2.*
+streamlit==1.35.*
+google-genai==1.69.*
+openai==1.30.*
+python-dateutil==2.9.*
+sqlalchemy==2.0.*
