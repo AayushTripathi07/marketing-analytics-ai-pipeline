@@ -210,17 +210,6 @@ Enter a monthly budget and the AI will:
 
 ---
 
-## 📇 CRM & Lead Management Integration
-
-Beyond analytics, the pipeline includes an integrated Lead Management system via Airtable. This module allows for:
-- **Lead Sorting**: Automatic grouping by priority (High, Med, Low).
-- **Communication Logs**: Centralised tracking of lead contact information.
-- **Workflow Sync**: Seamless transition from marketing insight to sales action.
-
-![Lead Management Airtable](images/lead_management.png)
-
----
-
 ## 🚨 Anomaly Detection
 
 The pipeline flags statistically unusual campaigns using Z-scores:
