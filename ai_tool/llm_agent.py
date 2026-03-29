@@ -1,7 +1,7 @@
 """
 llm_agent.py
 ─────────────────────────────────────────────────────────────────────────────
-Marketing Analytics AI Pipeline — LLM over SQL
+Marketing Analytics AI Pipeline — Task 5: LLM over SQL
 ─────────────────────────────────────────────────────────────────────────────
 Design decisions:
   1. Schema-narrowing  — Only the two AI views (vw_ai_flexible_performance,

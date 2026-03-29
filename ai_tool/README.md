@@ -136,8 +136,9 @@ the grain the optimizer needs: total spend and ROAS per brand.
 
 ---
 
-## Example Questions
-These questions cover a full range of use cases supported by the model:
+## 10 Example Questions
+
+These questions cover the two mandatory examples plus a full range of use cases:
 
 | # | Question | View used |
 |---|---|---|
