@@ -233,7 +233,7 @@ CURRENT QUESTION: {question}
 Write a single SQLite SELECT query that answers the question. Follow the QUERY RULES above.
 """
     client = _gemini_client()
-    sql = _call_gemini(prompt, model=st.session_state.get("model", "gemini-2.0-flash"))
+    sql = _call_gemini(prompt, model=GEMINI_MODEL)
 
     # Strip markdown code fences if the model disobeyed
     sql = re.sub(r"^```sql\s*", "", sql, flags=re.IGNORECASE)
@@ -275,26 +275,19 @@ Provide a concise, professional plain-English answer. Rules:
 - Do NOT repeat the SQL. Do NOT use bullet soup — write in short paragraphs.
 - Use INR for currency values.
 """
-    return _call_gemini(prompt, model=st.session_state.get("model", "gemini-2.0-flash"))
+    return _call_gemini(prompt, model=GEMINI_MODEL)
 
 
 # ─── Session state initialisation ─────────────────────────────────────────────
 if "messages" not in st.session_state:
     st.session_state.messages = []   # [{role, content, sql?, data?}]
 
-if "model" not in st.session_state:
-    st.session_state.model = "gemini-2.0-flash"
+GEMINI_MODEL = "gemini-2.5-flash"
 
 # ─── Sidebar ──────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.title("📊 Marketing Analytics AI")
     st.caption("Powered by Gemini + SQLite")
-
-    st.session_state.model = st.selectbox(
-        "Gemini model",
-        ["gemini-2.0-flash", "gemini-2.5-flash", "gemini-2.5-pro"],
-        help="Flash is faster and free-tier friendly. Pro gives richer answers.",
-    )
 
     st.divider()
     st.markdown("**Example questions**")
@@ -488,7 +481,7 @@ Rules:
 """
             with st.spinner("Gemini is optimising your budget…"):
                 try:
-                    result = _call_gemini(prompt, model=st.session_state.model)
+                    result = _call_gemini(prompt, model=GEMINI_MODEL)
                     st.success("**Allocation recommendation:**")
                     st.markdown(result)
                 except RuntimeError as exc:
@@ -595,7 +588,7 @@ Provide a brief (3-5 sentence) executive summary:
 - Which brands or regions appear most?
 - What should the media buyer investigate first?
 """
-                        result = _call_gemini(summ_prompt, model=st.session_state.model)
+                        result = _call_gemini(summ_prompt, model=GEMINI_MODEL)
                         st.info(f"**Gemini summary:** {result}")
                     except RuntimeError as exc:
                         st.caption(str(exc))
